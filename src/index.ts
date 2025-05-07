@@ -52,8 +52,10 @@ async function checkTickets(): Promise<void> {
   const startTime = new Date();
   console.log(`🔍 [${startTime.toLocaleString()}] Начало проверки билетов...`);
 
-  // const browser = await puppeteer.launch({ headless: true });
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    headless: 'new',
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  });
   const page = await browser.newPage();
 
   try {
