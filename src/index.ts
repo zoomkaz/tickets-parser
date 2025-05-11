@@ -68,7 +68,8 @@ async function checkTickets(): Promise<void> {
 
       const urlDate = formatDateForURL(currentDate);
       const visibleDate = formatDateForSearch(currentDate);
-      const url = `https://grandtrain.ru/tickets/2000000-2078750/${urlDate}/`;
+      // const url = `https://grandtrain.ru/tickets/2000000-2078750/${urlDate}/`;
+      const url = `https://grandtrain.ru/tickets/2000000-2078001/${urlDate}/`;
 
       console.log(`➡️ Проверка: ${visibleDate} | URL: ${url}`);
       await page.goto(url, { waitUntil: 'networkidle2' });
@@ -86,7 +87,8 @@ async function checkTickets(): Promise<void> {
           console.log(`✅ Новая дата найдена: ${visibleDate}, отправка уведомления...`);
           await bot.sendMessage(
             CHAT_ID,
-            `🎟 Билеты на поезд Москва — Севастополь доступны на ${visibleDate}:\n${url}`
+            // `🎟 Билеты на поезд Москва — Севастополь доступны на ${visibleDate}:\n${url}`
+            `🎟 Билеты на поезд Москва — Симферополь доступны на ${visibleDate}:\n${url}`
           );
         } else {
           console.log(`🔁 ${visibleDate} уже была отправлена ранее.`);
