@@ -12,8 +12,8 @@ dotenv.config();
 const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN!;
 const CHAT_ID = process.env.CHAT_ID!;
 
-const START_DATE = new Date('2025-08-10');
-const MAX_DAYS_TO_CHECK = 20;
+const START_DATE = new Date('2025-08-22');
+const MAX_DAYS_TO_CHECK = 4;
 const LOG_PATH = path.resolve(__dirname, '../logs.txt');
 const LAST_FOUND_PATH = path.resolve(__dirname, '../last-found.txt');
 
@@ -69,7 +69,7 @@ async function checkTickets(): Promise<void> {
       const urlDate = formatDateForURL(currentDate);
       const visibleDate = formatDateForSearch(currentDate);
       // const url = `https://grandtrain.ru/tickets/2000000-2078750/${urlDate}/`;
-      const url = `https://grandtrain.ru/tickets/2000000-2078001/${urlDate}/`;
+      const url = `https://grandtrain.ru/tickets/2078001-2000000/${urlDate}/`;
 
       console.log(`➡️ Проверка: ${visibleDate} | URL: ${url}`);
       await page.goto(url, { waitUntil: 'networkidle2' });
@@ -88,7 +88,7 @@ async function checkTickets(): Promise<void> {
           await bot.sendMessage(
             CHAT_ID,
             // `🎟 Билеты на поезд Москва — Севастополь доступны на ${visibleDate}:\n${url}`
-            `🎟 Билеты на поезд Москва — Симферополь доступны на ${visibleDate}:\n${url}`
+            `🎟 Билеты на поезд Симферополь — Москва доступны на ${visibleDate}:\n${url}`
           );
         } else {
           console.log(`🔁 ${visibleDate} уже была отправлена ранее.`);
